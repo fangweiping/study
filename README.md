@@ -1,2 +1,1 @@
-# arithmetic
-leetcode算法题练习
+日常学习
