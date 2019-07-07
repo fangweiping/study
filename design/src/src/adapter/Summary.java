@@ -22,5 +22,6 @@ import java.io.InputStreamReader;
 public class Summary {
     public static void main(String[] args) throws FileNotFoundException {
         InputStreamReader isr = new InputStreamReader(new FileInputStream("d://a.txt"));
+        
     }
 }
