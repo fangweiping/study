@@ -1,4 +1,4 @@
-package arithmetic.leetcode;
+package leetcode;
 
 
 /**

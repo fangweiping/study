@@ -1,4 +1,4 @@
-package arithmetic.leetcode;
+package leetcode;
 
 import java.util.Arrays;
 
@@ -13,7 +13,7 @@ import java.util.Arrays;
  * 输出: [3,4]
  *
  */
-public class Demo {
+public class Demo34_Resolve {
     public static void main(String[] args) {
         int[] nums = {5,7,7,8,8,8,8,8,10};
         int count = 0;
