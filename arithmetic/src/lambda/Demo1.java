@@ -1,6 +1,5 @@
 package lambda;
 
-import arithmetic.leetcode.User;
 
 import java.util.ArrayList;
 import java.util.List;
