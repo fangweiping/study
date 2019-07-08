@@ -29,6 +29,7 @@ public class Demo35_Resolve {
         int target =5;
         int i = searchInsert(nums, target);
         System.out.println("i = " + i);
+
     }
 
     public static int searchInsert(int[] nums, int target) {
