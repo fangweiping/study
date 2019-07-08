@@ -14,9 +14,6 @@ public class ArithmeticDemo {
        list.add(66);
        list.add(22);
 
-     /*   List maopao = maopao(list);
-        System.out.println("maopao = " + maopao);
-*/
         List<Integer> selectSort = selectSort(list);
         System.out.println("selectSort = " + selectSort);
     }
