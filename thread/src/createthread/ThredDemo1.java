@@ -1,4 +1,4 @@
-package thred.createthread;
+package createthread;
 
 public class ThredDemo1 {
 
