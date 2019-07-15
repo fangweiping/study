@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.all;
 
 /**
  * 编写一个函数来查找字符串数组中的最长公共前缀。
@@ -40,9 +40,9 @@ public class Demo14 {
             for (int j = 0; j < strs.length; j++) {
                 String substring;
 
-                if (!tempPre.equals(substring)) {
-                    return pre;
-                }
+//                if (!tempPre.equals(substring)) {
+//                    return pre;
+//                }
             }
             pre = tempPre;
         }

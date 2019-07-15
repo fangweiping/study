@@ -1,7 +1,8 @@
-package leetcode;
+package leetcode.all;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
+
 /**
  * 有效的括号
  * <p>

@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.all;
 
 
 public class User {
