@@ -1,17 +1,8 @@
 # Created by .ignore support plugin (hsz.mobi)
-.idea
-*.out
-*.gen
+**/*.idea
+**/out
+**/gen
 **/*.iml
-target
+**/target
 Test*.java
-src/leetcode/middle/
-src/leetcode/primary/design/
-src/leetcode/primary/dynamic/
-src/leetcode/primary/list/
-src/leetcode/primary/math/
-src/leetcode/primary/other/
-src/leetcode/primary/sortsearch/
-src/leetcode/primary/string/
-src/leetcode/primary/tree/
-src/leetcode/senior/
+
