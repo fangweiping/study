@@ -3,5 +3,6 @@
 .out
 .gen
 .iml
+target
 Test*.java
 
