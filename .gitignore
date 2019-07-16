@@ -2,6 +2,16 @@
 .idea
 *.out
 *.gen
-*.iml
+**/*.iml
 target
 Test*.java
+src/leetcode/middle/
+src/leetcode/primary/design/
+src/leetcode/primary/dynamic/
+src/leetcode/primary/list/
+src/leetcode/primary/math/
+src/leetcode/primary/other/
+src/leetcode/primary/sortsearch/
+src/leetcode/primary/string/
+src/leetcode/primary/tree/
+src/leetcode/senior/
