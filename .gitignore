@@ -1,8 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
-.out
-.gen
-.iml
+*.out
+*.gen
+*.iml
 target
 Test*.java
-
