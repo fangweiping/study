@@ -7,6 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLEncoder;
+
 @RestController
 @RequestMapping("user")
 public class UserController {
@@ -14,6 +21,38 @@ public class UserController {
     @GetMapping("login")
     @Login("开始登陆")
     public String doLogin() {
+        RespResult resp = new RespResult();
+        resp.setCode(200);
+        resp.setMsg("登陆成功");
+        resp.setData(null);
+        return JSON.toJSONString(resp);
+    }
+
+
+
+    @GetMapping("file")
+    public String getFile(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //获取资源路径
+        InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream("files\\1.txt");
+        //获取输出流
+        ServletOutputStream outputStream = response.getOutputStream();
+        // 配置文件下载
+        response.setHeader("content-type", "application/octet-stream");
+        response.setContentType("application/octet-stream");
+        // 下载文件能正常显示中文
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("1.txt", "UTF-8"));
+
+        //缓冲数组
+        byte[] buf = new byte[1024];
+        while (resourceAsStream.read(buf) != -1) {
+            outputStream.write(buf);
+        }
+
+        //关闭资源
+        outputStream.close();
+        resourceAsStream.close();
+
+
         RespResult resp = new RespResult();
         resp.setCode(200);
         resp.setMsg("登陆成功");
