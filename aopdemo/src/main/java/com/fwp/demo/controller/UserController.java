@@ -101,4 +101,15 @@ public class UserController {
         //.....
         return null;
     }
+
+    @GetMapping("get")
+    public void getMethod(@RequestBody User user) {
+        System.out.println(user);
+    }
+
+
+    @PostMapping("post")
+    public void postMethod(@RequestBody User user) {
+        System.out.println(user);
+    }
 }
