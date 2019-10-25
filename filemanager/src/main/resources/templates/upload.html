@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<form id="uploadForm">
+    <input type="file" name="files">
+    <input type="file" name="files">
+    <input type="file" name="files">
+</form>
+
+<input type="button" value="提交" onclick="upload()">
+</body>
+<script>
+
+    function upload() {
+        alert("开始提交")
+        let formData = new FormData(document.getElementById("uploadForm"));
+        formData.append('pid',0);
+
+        // $("input[type=file]").each(function (index, element) {
+        //     formData.append("files",this.file());
+        // })
+        $.ajax({
+            url: "http://localhost:8080/file/files",    //请求的url地址
+            dataType: "json",   //返回格式为json
+            async: true,//请求是否异步，默认为异步，这也是ajax重要特性
+            data: formData,    //参数值,键值对
+            processData:false,//告诉jquery不要去处理请求的数据格式
+            contentType:false,//告诉jquery不要设置请求头的类型
+            type: "post",   //请求方式
+            beforeSend: function () {
+                //请求前的处理
+            },
+            success: function (req) {
+                //请求成功时处理
+            },
+            complete: function () {
+                //请求完成的处理
+            },
+            error: function () {
+                //请求出错处理
+            }
+        });
+    }
+</script>
+</html>
