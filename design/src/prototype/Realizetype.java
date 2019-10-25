@@ -1,4 +1,4 @@
-package src.prototype;
+package prototype;
 
 /**
  * 1.抽象原型类：规定了具体原型对象必须实现的接口。 这里就是 Cloneable 接口
