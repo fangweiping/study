@@ -3,6 +3,7 @@ package com.fwp.demo.controller;
 import com.alibaba.fastjson.JSON;
 import com.fwp.demo.aop.annotation.Login;
 import com.fwp.demo.vo.RespResult;
+import com.fwp.demo.vo.User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,16 +20,14 @@ public class UserController {
         return JSON.toJSONString(resp);
     }
 
-
-
     @GetMapping("get")
-    public void getMethod(@RequestBody User user) {
-        System.out.println(user);
+    public User getMethod(@RequestBody User user) {
+        return user;
+
     }
 
-
     @PostMapping("post")
-    public void postMethod(@RequestBody User user) {
-        System.out.println(user);
+    public User postMethod(@RequestBody User user) {
+        return user;
     }
 }
