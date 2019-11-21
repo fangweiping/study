@@ -8,7 +8,7 @@ package leetcode.all;
  * 给定 nums = [3,2,2,3], val = 3,
  * 函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。
  * 你不需要考虑数组中超出新长度后面的元素。
- *
+ * <p>
  * 示例 2:
  * 给定 nums = [0,1,2,2,3,0,4,2], val = 2,
  * 函数应该返回新的长度 5, 并且 nums 中的前五个元素为 0, 1, 3, 0, 4。
@@ -18,19 +18,32 @@ package leetcode.all;
 public class Demo27 {
     public static void main(String[] args) {
 
+
+        int[] nums = {0,1,2,2,3,0,4,2};
+        int val = 2;
+        int i = removeElement(nums, val);
+        System.out.println("i = " + i);
+
     }
 
     /**
      * 双指针法!
+     *
      * @param nums
      * @param val
      * @return
      */
-    public int removeElement(int[] nums, int val) {
-        for (int i = 0; i < nums.length; i++) {
-
+    public static  int removeElement(int[] nums, int val) {
+        int length = nums.length;
+        for (int i = 0; i < length; i++) {
+            if (nums[i] == val) {
+                for (int j = i; j < nums.length-1; j++) {
+                    nums[j] = nums[j+ 1];
+                }
+                length--;
+                i--;
+            }
         }
-
-        return 1;
+        return length;
     }
 }
