@@ -3,6 +3,7 @@ package com.fwp.demo.controller;
 import com.alibaba.fastjson.JSON;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,6 +23,14 @@ public class JsonController {
         String json = JSON.toJSONString(objects);
         String a = "[{\"age\":11,\"name\":\"你好\"}]";
         System.out.println(json);
+
+    @GetMapping("array")
+    public String getArrayJsonString(){
+        ArrayList<String> list = new ArrayList<>();
+        list.add("renjia");
+        list.add("ziji");
+        String json = JSON.toJSONString(list);
+        System.out.println("json = " + json);
         return json;
     }
 }
