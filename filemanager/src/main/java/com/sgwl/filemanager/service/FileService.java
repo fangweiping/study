@@ -212,6 +212,7 @@ public class FileService {
         } else {
             totalPage = (int) (total / rows + 1);
         }
+        System.out.println(files);
         return new PageResult(total, totalPage, files);
     }
 }

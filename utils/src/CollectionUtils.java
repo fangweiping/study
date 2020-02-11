@@ -1,8 +1,8 @@
-
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
-public class CommonTool {
+public class CollectionUtils {
 
     /**
      * 判断字符串是否为null或""

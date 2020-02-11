@@ -65,6 +65,7 @@ public class FolderController {
         List treeNodes = folderService.getTreeNodes();
         RespResult respResult = new RespResult<>(200, "查询成功", treeNodes);
         //为了保证数据结构顺序,使用FastJson进行序列化
+        System.out.println(treeNodes);
         return JSON.toJSONString(respResult);
     }
 
