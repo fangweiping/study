@@ -1,4 +1,4 @@
-package src.singleton;
+package singleton;
 
 /**
  * 懒汉式加载,  线程不安全,通过双重锁机制来保证数据安全

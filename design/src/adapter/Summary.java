@@ -1,4 +1,4 @@
-package src.adapter;
+package adapter;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -22,6 +22,6 @@ import java.io.InputStreamReader;
 public class Summary {
     public static void main(String[] args) throws FileNotFoundException {
         InputStreamReader isr = new InputStreamReader(new FileInputStream("d://a.txt"));
-        
+
     }
 }

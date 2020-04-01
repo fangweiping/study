@@ -1,4 +1,4 @@
-package src.factory;
+package factory;
 
 /**
  * 短信发送类

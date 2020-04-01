@@ -1,4 +1,4 @@
-package src.factory;
+package factory;
 
 /**
  * 邮箱发送工厂类

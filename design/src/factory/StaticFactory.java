@@ -1,4 +1,4 @@
-package src.factory;
+package factory;
 
 /**
  * 静态工厂   就是多个工厂方法变为静态方法

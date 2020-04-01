@@ -1,4 +1,4 @@
-package src.factory;
+package factory;
 
 public class FactoryTest {
     public static void main(String[] args) {

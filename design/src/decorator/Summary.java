@@ -1,4 +1,4 @@
-package src.decorator;
+package decorator;
 
 /**
  * 装饰者模式又名包装(Wrapper)模式。
