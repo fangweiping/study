@@ -1,6 +1,7 @@
 package com.sgwl.filemanager.enums;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
@@ -12,11 +13,20 @@ public enum ExceptionEnum {
     private int value;
     private String msg;
 
-    public int value() {
+
+    public int getValue() {
         return value;
     }
 
-    public String msg() {
+    public void setValue(int value) {
+        this.value = value;
+    }
+
+    public String getMsg() {
         return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 }
