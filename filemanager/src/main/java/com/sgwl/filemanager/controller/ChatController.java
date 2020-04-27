@@ -2,7 +2,7 @@
 //
 //import com.sgwl.filemanager.mapper.ChatMapper;
 //import com.sgwl.filemanager.po.ChatPo;
-//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.beans.design.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.RequestMapping;
 //import org.springframework.web.bind.annotation.RestController;
 //

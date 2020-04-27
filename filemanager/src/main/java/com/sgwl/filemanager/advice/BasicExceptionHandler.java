@@ -19,6 +19,6 @@ public class BasicExceptionHandler {
     //被声明的方法可以看作是一个SpringMVC的handler
     public ResponseEntity<ExceptionResult> handlerException(FileManagerException e) {
         //从异常中获取友好信息
-        return ResponseEntity.status(e.getExceptionEnum().value()).body(new ExceptionResult(e.getExceptionEnum()));
+        return ResponseEntity.status(e.getExceptionEnum().getValue()).body(new ExceptionResult(e.getExceptionEnum()));
     }
 }
