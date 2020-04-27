@@ -11,8 +11,8 @@ public class ExceptionResult {
    private long timestamp;
 
     public ExceptionResult(ExceptionEnum em) {
-        this.status = em.value();
-        this.msg=em.msg();
+        this.status = em.getValue();
+        this.msg=em.getMsg();
         this.timestamp=System.currentTimeMillis();
     }
 
