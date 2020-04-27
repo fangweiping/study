@@ -2,6 +2,8 @@ package com.sgwl.filemanager.controller;
 
 
 import com.alibaba.fastjson.JSON;
+import com.sgwl.filemanager.exception.FileManagerException;
+import com.sgwl.filemanager.po.AreaPo;
 import com.sgwl.filemanager.service.FolderService;
 import com.sgwl.filemanager.vo.RespResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,5 +70,4 @@ public class FolderController {
         System.out.println(treeNodes);
         return JSON.toJSONString(respResult);
     }
-
 }
