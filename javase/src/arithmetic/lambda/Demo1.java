@@ -14,9 +14,6 @@ import java.util.stream.Collectors;
 public class Demo1 {
     public static void main(String[] args) {
         ArrayList<User> list = new ArrayList<>();
-
-
-
         Map<Integer, List<User>> map = list.stream().sorted(((o1, o2) -> o2.getGrade() - o1.getGrade())).collect(Collectors.groupingBy(User::getAge));
         System.out.println(map);
     }
