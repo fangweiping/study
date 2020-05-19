@@ -55,6 +55,6 @@ public class SpringmvcAnotationDemoController {
 
     public static void main(String[] args) {
         String json = JSON.toJSONString(new User("fwp", 25));
-        System.out.println("json = " + json);
+        System.out.println("json1 = " + json);
     }
 }
