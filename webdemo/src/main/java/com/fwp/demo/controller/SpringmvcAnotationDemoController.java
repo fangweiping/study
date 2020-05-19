@@ -14,23 +14,33 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("springmvc")
 public class SpringmvcAnotationDemoController {
 
+
+    /**
+     * 不适用任何注解的情况下
+     * 使用mvc框架会从url参数中获取参数绑定到实体中
+     * @param user
+     * @return
+     */
     @GetMapping("get1")
     public User get1( User user) {
         return user;
     }
 
 
+    /**
+     * 报错  get没有请求体
+     * @param user
+     * @return
+     */
     @GetMapping("get2")
     public User get2( @RequestBody User user) {
         return user;
     }
 
-
     @PostMapping("post1")
     public User  post1(@RequestBody User user) {
         return user;
     }
-
 
     @PostMapping("post2")
     public String  post2(@RequestBody String userString) {
@@ -39,7 +49,7 @@ public class SpringmvcAnotationDemoController {
 
     @PostMapping("post3")
     public User  post3(User user) {
-        return user;
+            return user;
     }
 
 
