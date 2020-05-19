@@ -5,4 +5,6 @@
 **/*.iml
 **/target
 Test*.java
+*.bak
+
 

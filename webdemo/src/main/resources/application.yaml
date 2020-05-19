@@ -1,5 +1,10 @@
 server:
-  port: 9999
+  port: 10086
 spring:
   application:
     name: webdemo
+  datasource:
+    url: jdbc:mysql://172.19.25.196:3306/sbc-bff?characterEncoding=UTF-8&&zeroDateTimeBehavior=convertToNull&autoReconnect=true&failOverReadOnly=false&connectTimeout=0&serverTimezone=Asia/Shanghai
+    username: root
+    password: Wmi@2019
+    driver-class-name: com.mysql.jdbc.Driver
