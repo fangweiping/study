@@ -28,7 +28,9 @@ public class RegexDemo {
 
 //        Pattern pattern= Pattern.compile("^.*"+historyOrderPrefix+".*$", Pattern.CASE_INSENSITIVE);
 
+            int b = -100;
 
+        System.out.println("(100-b) = " + (100-b));
 
     }
 }
