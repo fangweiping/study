@@ -9,7 +9,6 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Workbook;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -28,7 +27,7 @@ public class POIDemo {
     public static void main(String[] args) {
         POIFSFileSystem fs = null;
         try {
-            fs = new POIFSFileSystem(new FileInputStream("C://Users//EDZ//Desktop//到货表.xls"));
+            fs = new POIFSFileSystem(new FileInputStream("C:\\Users\\Admin\\Desktop\\1.xls"));
 
             HSSFWorkbook wb = new HSSFWorkbook(fs);
 
@@ -41,7 +40,11 @@ public class POIDemo {
                     if (row == null) {
                         break a;
                     }
-                    String skuNo = new BigDecimal(row.getCell(0).getNumericCellValue()).toString();
+
+                    //将文本转成普通数值类型,获取以后以字符串形式导出
+                    String skuNo = new BigDecimal(row.getCell(0).getNumericCellValue()).toString().trim();
+                    System.out.println("skuNo = " + skuNo);
+                    BigDecimal.valueOf(Double.valueOf(skuNo));//判断是否未正确数值
                     Integer num = new Double(row.getCell(1).getNumericCellValue()).intValue();
 
                     if (!skuNoNumMap.containsKey(skuNo)) {
@@ -53,7 +56,7 @@ public class POIDemo {
                 }
             }
 
-            //写入
+            //以字符串写入
             HSSFWorkbook excel= new HSSFWorkbook();
 
             HSSFSheet sheet = excel.createSheet();
@@ -66,7 +69,7 @@ public class POIDemo {
                 i++;
             }
 
-           FileOutputStream out =new FileOutputStream("C://Users//EDZ//Desktop//入库单.xls");
+           FileOutputStream out =new FileOutputStream("C:\\Users\\Admin\\Desktop\\导出.xls");
            excel.write(out);
 
 
