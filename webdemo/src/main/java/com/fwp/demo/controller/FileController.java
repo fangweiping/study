@@ -24,12 +24,11 @@ public class FileController {
         InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream("files\\1.csv");
         //获取输出流
         ServletOutputStream outputStream = response.getOutputStream();
+
         // 配置文件下载
+        response.setContentType("application/octet-stream");//具体文件类型通过给出的扩展名来确定
         response.setHeader("content-type", "application/octet-stream");
-        //application/octet-stream可以理解为通用,具体文件类型通过给出的扩展名来确定
-        //response.setContentType("text/cvs");
-         //扩展名编码处理,扩展名即是文件名
-        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("1.csv", "UTF-8"));
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("1.csv", "utf-8"));//设置文件名
 
         //缓冲数组
         byte[] buf = new byte[1024];
@@ -86,12 +85,11 @@ public class FileController {
      * @throws IOException
      */
     @GetMapping("download")
-    public String getU8File(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void getU8File(HttpServletRequest request, HttpServletResponse response) throws IOException {
         // 配置文件下载
+        response.setContentType("application/octet-stream");//具体文件类型通过给出的扩展名来确定
         response.setHeader("content-type", "application/octet-stream");
-        response.setContentType("application/octet-stream");
-        // 下载文件能正常显示中文
-        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("1.csv", "utf-8"));
+        response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode("1.csv", "utf-8"));//设置文件名
         OutputStream os = response.getOutputStream();
 
         //该list保存每一行聊天数据
@@ -106,6 +104,5 @@ public class FileController {
         }
         //关闭资源
         //.....
-        return null;
     }
 }
