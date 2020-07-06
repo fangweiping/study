@@ -1,4 +1,4 @@
-package com.fwp.demo;
+package com.fwp.demo.reptile.common;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

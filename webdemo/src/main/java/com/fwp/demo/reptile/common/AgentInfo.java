@@ -1,4 +1,4 @@
-package com.fwp.demo;
+package com.fwp.demo.reptile.common;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

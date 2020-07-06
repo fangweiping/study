@@ -1,5 +1,5 @@
-package com.fwp.demo;
- 
+package com.fwp.demo.reptile.common;
+
 import java.io.IOException;
 import java.security.KeyManagementException;
 import java.security.KeyStoreException;
@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
- 
+
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
- 
+
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -29,12 +29,12 @@ import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
- 
+
 public class HttpsUtils {
 	private static Logger logger = LoggerFactory.getLogger(HttpsUtils.class);
 	static CloseableHttpClient httpClient;
 	static CloseableHttpResponse httpResponse;
- 
+
 	public static CloseableHttpClient createSSLClientDefault() {
 		try {
 			SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null, new TrustStrategy() {
@@ -54,12 +54,12 @@ public class HttpsUtils {
 			e.printStackTrace();
 		}
 		return HttpClients.createDefault();
- 
+
 	}
- 
+
 	/**
 	 * 发送https请求
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	public static String sendByHttp(Map<String, Object> params, String url) {
@@ -97,14 +97,14 @@ public class HttpsUtils {
 			}
 		}
 	}
- 
+
 	public static void main(String[] args) throws Exception {
 		Map<String, Object> map = new HashMap<>();
 		map.put("authCode", "FX:123");
 		map.put("userName", "jianghaida");
 		map.put("pwd", "jianghaida");
-		
- 
+
+
 		System.out.println(HttpsUtils.sendByHttp(map, "https://localhost:8010/postDoc"));;
 	}
 }

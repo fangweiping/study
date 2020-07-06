@@ -1,4 +1,4 @@
-package com.fwp.demo;
+package com.fwp.demo.reptile.common;
 
 /**
  * @author Fang WeiPing
@@ -22,7 +22,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import javax.naming.Name;
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLSession;
