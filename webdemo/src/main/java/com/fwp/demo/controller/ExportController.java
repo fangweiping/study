@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Field;
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -132,18 +133,33 @@ public class ExportController {
             field.setAccessible(true);
             Object fieldValue = field.get(obj);
             if(fieldValue==null) continue;
-            if (fieldValue instanceof String||fieldValue instanceof Double || fieldValue instanceof Integer) {
-                fieldValueList.add(fieldValue);
+            if (fieldValue instanceof String||fieldValue instanceof Double|| fieldValue instanceof Integer) {
+                fieldValueList.add(fieldValue instanceof Double? dataFormat((Double) fieldValue):fieldValue);
             } else {
                 Class<?> fieldValueClass = fieldValue.getClass();
                 for (Field field1 : fieldValueClass.getDeclaredFields()) {
                     field1.setAccessible(true);
-                    fieldValueList.add(field1.get(fieldValue));
+                    Object fieldValue1  = field1.get(fieldValue);
+                    fieldValueList.add(fieldValue1 instanceof Double? dataFormat((Double) fieldValue1):fieldValue1);
                     field1.setAccessible(false);
                 }
             }
             field.setAccessible(false);
         }
         return fieldValueList;
+    }
+
+    /**
+     * 保留2位小数后使用%表示
+     * @return
+     */
+    public static String dataFormat(Double num) {
+        DecimalFormat format   = new DecimalFormat("######0.00");
+        Double v = Double.parseDouble(format.format(num*100d));
+        return  v.toString()+"%";
+    }
+
+    public static void main(String[] args) {
+        System.out.println(dataFormat(87.3351));
     }
 }
