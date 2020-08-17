@@ -7,8 +7,9 @@ import com.fwp.demo.vo.OperationTargetValueModel;
 import com.fwp.demo.vo.OperationVO;
 import com.fwp.demo.vo.SummationsModel;
 import lombok.extern.slf4j.Slf4j;
-  import org.apache.poi.xssf.usermodel.*;
+import org.apache.poi.xssf.usermodel.*;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -53,58 +54,63 @@ public class ExportController {
             XSSFCellStyle titleStyle = sheet.getRow(0).getCell(1).getCellStyle();
             XSSFCellStyle cellStyle = sheet.getRow(2).getCell(1).getCellStyle();
 
-            //1.写入基本数据
-            for (int i = 0; i < operationVOList.size(); i++) {
-                OperationVO operationVO = operationVOList.get(i);
-                List<Object> fieldValueList = parseObject(operationVO);
-                for (int j = 0; j < fieldValueList.size(); j++) {
-                    Object fieldValue = fieldValueList.get(j);
+            if (!CollectionUtils.isEmpty(operationVOList)) {
+                //1.写入基本数据
+                for (int i = 0; i < operationVOList.size(); i++) {
+                    OperationVO operationVO = operationVOList.get(i);
+                    List<Object> fieldValueList = parseObject(operationVO);
+                    for (int j = 0; j < fieldValueList.size(); j++) {
+                        Object fieldValue = fieldValueList.get(j);
+                        //获取目标单元格
+                        XSSFRow row;
+                        if (j < 24) {
+                            row = sheet.getRow(j);
+                        } else {
+                            row = sheet.getRow(j + 1);
+                        }
+                        XSSFCell cell = row.createCell(i + 3);
+                        //单元格设置
+                        cell.setCellStyle(j == 0 ? titleStyle : cellStyle);
+                        cell.setCellValue(fieldValue.toString());
+                    }
+                }
+
+                //2.写入目标值
+                OperationTargetValueModel operationTargetValueModel = operationVOList.get(0).getOperationTargetValueModel();
+                List<Object> fieldValueList = parseObject(operationTargetValueModel);
+                for (int i = 0, j = 25; i < fieldValueList.size(); i++, j++) {
+                    Object fieldValue = fieldValueList.get(i);
+                    XSSFCell cell = sheet.getRow(j).getCell(2);
+                    cell.setCellStyle(cellStyle);
+                    cell.setCellValue(fieldValue.toString());
+                }
+
+                //3.写入合计值
+                SummationsModel summationsModel = operationVOList.get(0).getSummationsModel();
+                fieldValueList = parseObject(summationsModel);
+                int columnIndex = 3 + operationVOList.size();//合计值列索引
+                XSSFCell cell = sheet.getRow(0).createCell(columnIndex);
+                cell.setCellValue("合计值");
+                cell.setCellStyle(titleStyle);
+
+                for (int i = 0, j = 1; i < fieldValueList.size(); i++, j++) {
+                    Object fieldValue = fieldValueList.get(i);
                     //获取目标单元格
                     XSSFRow row;
-                    if (j < 24) {
-                        row = sheet.getRow(j );
+                    if (i < 23) {
+                        row = sheet.getRow(j);
                     } else {
                         row = sheet.getRow(j + 1);
                     }
-                    XSSFCell cell =  row.createCell(i+3);
+                    cell = row.createCell(columnIndex);
                     //单元格设置
-                    cell.setCellStyle(j==0?titleStyle:cellStyle);
+                    cell.setCellStyle(cellStyle);
                     cell.setCellValue(fieldValue.toString());
                 }
+            } else {
+
             }
 
-            //2.写入目标值
-            OperationTargetValueModel operationTargetValueModel = operationVOList.get(0).getOperationTargetValueModel();
-            List<Object> fieldValueList = parseObject(operationTargetValueModel);
-            for (int i = 0,j=25; i < fieldValueList.size(); i++,j++) {
-                Object fieldValue = fieldValueList.get(i);
-                XSSFCell cell = sheet.getRow(j).getCell(2);
-                cell.setCellStyle(cellStyle);
-                cell.setCellValue(fieldValue.toString());
-            }
-
-            //3.写入合计值
-            SummationsModel summationsModel = operationVOList.get(0).getSummationsModel();
-            fieldValueList = parseObject(summationsModel);
-            int columnIndex = 3+operationVOList.size();//合计值列索引
-            XSSFCell cell = sheet.getRow(0).createCell(columnIndex);
-            cell.setCellValue("合计值");
-            cell.setCellStyle(titleStyle);
-
-            for (int i = 0,j=1; i < fieldValueList.size(); i++,j++) {
-                Object fieldValue = fieldValueList.get(i);
-                //获取目标单元格
-                XSSFRow row;
-                if (i < 23) {
-                    row = sheet.getRow(j);
-                } else {
-                    row = sheet.getRow(j+1);
-                }
-                cell = row.createCell(columnIndex);
-                //单元格设置
-                cell.setCellStyle(cellStyle);
-                cell.setCellValue(fieldValue.toString());
-            }
             os = response.getOutputStream();
             xssfWorkbook.write(os);
             os.close();
@@ -134,13 +140,15 @@ public class ExportController {
             Object fieldValue = field.get(obj);
             if(fieldValue==null) continue;
             if (fieldValue instanceof String||fieldValue instanceof Double|| fieldValue instanceof Integer) {
-                fieldValueList.add(fieldValue instanceof Double? dataFormat((Double) fieldValue):fieldValue);
+                String field1Name = field.getName();
+                fieldValueList.add((fieldValue instanceof Double&&!getExcludeFields().contains(field1Name))? dataFormat((Double) fieldValue):fieldValue);
             } else {
                 Class<?> fieldValueClass = fieldValue.getClass();
                 for (Field field1 : fieldValueClass.getDeclaredFields()) {
                     field1.setAccessible(true);
+                    String field1Name = field1.getName();
                     Object fieldValue1  = field1.get(fieldValue);
-                    fieldValueList.add(fieldValue1 instanceof Double? dataFormat((Double) fieldValue1):fieldValue1);
+                    fieldValueList.add((fieldValue1 instanceof Double&&!getExcludeFields().contains(field1Name))? dataFormat((Double) fieldValue1):fieldValue1);
                     field1.setAccessible(false);
                 }
             }
@@ -148,6 +156,17 @@ public class ExportController {
         }
         return fieldValueList;
     }
+
+    /**
+     * 不需要使用%号表示的字段
+     * @return
+     */
+    public List<String> getExcludeFields() {
+        String[] excludeFields={"b2bAverBoxNum","b2bAverPcsNum","b2cAverPackageNum","b2cAverPcsNum","b2bAverBoxNumCount",
+                "b2bAverPcsNumCount","b2cAverPackageNumCount","b2cAverPcsNumCount"};
+        return CollectionUtils.arrayToList(excludeFields);
+    }
+
 
     /**
      * 保留2位小数后使用%表示

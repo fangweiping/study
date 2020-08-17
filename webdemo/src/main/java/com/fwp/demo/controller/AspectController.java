@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("aspect")
-public class AspectController {
+public  class AspectController {
 
     @RequestMapping("test")
     public User testAspect() {
