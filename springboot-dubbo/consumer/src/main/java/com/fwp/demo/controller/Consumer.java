@@ -1,7 +1,7 @@
-package com.demo.controller;
+package com.fwp.demo.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.demo.service.ProviderService;
+import com.fwp.demo.service.ProviderService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;

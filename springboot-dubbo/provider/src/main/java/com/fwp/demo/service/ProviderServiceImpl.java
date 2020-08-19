@@ -1,4 +1,4 @@
-package com.demo.service;
+package com.fwp.demo.service;
 
 
 import com.alibaba.dubbo.config.annotation.Service;
