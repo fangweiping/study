@@ -1,4 +1,4 @@
-package com.fwp.demo.mapper;
+package com.fwp.demo.repository;
 
 import com.fwp.demo.entity.User;
 import org.apache.ibatis.annotations.Mapper;
