@@ -4,7 +4,7 @@
 **/gen
 **/*.iml
 **/target
-Test*.java
 *.bak
+#test
 
 

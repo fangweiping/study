@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
-@MapperScan("com.sgwl.filemanager.mapper")
+@MapperScan("com.sgwl.filemanager.repository")
 @EnableAsync//开启多线程
 @EnableScheduling//开启定时任务
 public class FileManagerApplication {
