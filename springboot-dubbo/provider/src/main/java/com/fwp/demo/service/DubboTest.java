@@ -1,24 +1,23 @@
 package com.fwp.demo.service;
 
-import com.alibaba.dubbo.config.ApplicationConfig;
-import com.alibaba.dubbo.config.ReferenceConfig;
-import com.alibaba.dubbo.config.RegistryConfig;
-import com.alibaba.dubbo.config.utils.ReferenceConfigCache;
-import com.alibaba.dubbo.rpc.service.GenericService;
+import org.apache.dubbo.config.ApplicationConfig;
+import org.apache.dubbo.config.RegistryConfig;
 import com.alibaba.fastjson.JSON;
+import org.apache.dubbo.config.ReferenceConfig;
+import org.apache.dubbo.config.utils.ReferenceConfigCache;
+import org.apache.dubbo.rpc.service.GenericService;
 
 public class DubboTest {
     public static void main(String[] args) {
         ReferenceConfig<GenericService> refrence = new ReferenceConfig<>();
-        refrence.setApplication(new ApplicationConfig("test"));
-        refrence.setRegistry(new RegistryConfig("zookeeper://160.5.29.24:2181"));
-        refrence.setGeneric(true);
+        refrence.setApplication(new ApplicationConfig("dubbo-provider"));
+        refrence.setRegistry(new RegistryConfig("zookeeper://localhost:2181"));
         refrence.setTimeout(20000);
-        refrence.setInterface("com.");
-        refrence.setGroup("mm");
+        refrence.setInterface("com.fwp.demo.service.ProviderService");
+        //refrence.setGroup("mm");
         ReferenceConfigCache cache = ReferenceConfigCache.getCache();
         GenericService genericService = cache.get(refrence);
-        Object method = genericService.$invoke("method", new String[]{}, new Object[]{10000});
+        Object method = genericService.$invoke("sayHello", new String[]{"java.lang.String"}, new Object[]{"hello"});
         System.out.println(JSON.toJSONString(method));
 
     }

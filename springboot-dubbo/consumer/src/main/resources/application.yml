@@ -1,11 +1,17 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
 server:
   port: 8081
-spring:
-  dubbo:
-    application:
-      name: springboot-dubbo-demo
-    registry:
-      address: zookeeper://localhost
-      port: 2181
-    scan: com.demo.controller
+dubbo:
+  application:
+    name: dubbo-consumer #应用名
+    qos:
+      enable: false
+      port: "33322342"
+  registry:
+    address: zookeeper://127.0.0.1:2181 #zookeeper地址  注意事项: 2.7版本ip必须写在ip后面
+  scan:
+    base-packages: com.fwp.demo.controller #扫描的包名
+
 
