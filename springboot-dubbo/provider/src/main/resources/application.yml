@@ -6,7 +6,7 @@ server:
 dubbo:
   application:
     name: dubbo-provider #应用名
-    qos-enable: false   # 关闭qos
+#    qos-enable: false   # 关闭qos
   registry:
     address: zookeeper://127.0.0.1:2181 #zookeeper地址  注意事项: 2.7版本ip必须写在ip后面
   protocol:

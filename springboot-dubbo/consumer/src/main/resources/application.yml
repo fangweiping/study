@@ -6,9 +6,12 @@ server:
 dubbo:
   application:
     name: dubbo-consumer #应用名
-    qos-enable: false   # 关闭qos
+#    qos-enable: false   # 关闭qos
   registry:
     address: zookeeper://127.0.0.1:2181 #zookeeper地址  注意事项: 2.7版本ip必须写在ip后面
+  protocol:
+    name: dubbo
+    port: 20881 #dubbo服务暴露的端口  消费者和生产不能一样
   scan:
     base-packages: com.fwp.demo.controller #扫描的包名
 
