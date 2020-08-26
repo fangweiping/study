@@ -11,6 +11,6 @@ dubbo:
     address: zookeeper://127.0.0.1:2181 #zookeeper地址  注意事项: 2.7版本ip必须写在ip后面
   protocol:
     name: dubbo
-    port: "20880" #dubbo服务暴露的端口
+    port: 20880 #dubbo服务暴露的端口
   scan:
     base-packages: com.fwp.demo.service #扫描的包名
