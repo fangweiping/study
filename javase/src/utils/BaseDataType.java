@@ -3,12 +3,13 @@ package utils;/**
  * @date 2020/5/30 19:06
  */
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 /**
  * @Description:
  * @Autho fangweiping
- * @Date: 2020/5/30 19:06 
+ * @Date: 2020/5/30 19:06
  */
 public class BaseDataType {
 

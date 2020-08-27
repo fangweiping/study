@@ -3,7 +3,7 @@ package utils;/**
  * @date 2020/5/29 11:42
  */
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
@@ -12,7 +12,7 @@ import java.io.InputStream;
 /**
  * @Description:
  * @Autho fangweiping
- * @Date: 2020/5/29 11:42 
+ * @Date: 2020/5/29 11:42
  */
 public class FileUtils {
 

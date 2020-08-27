@@ -3,14 +3,15 @@ package utils;/**
  * @date 2020/5/29 11:53
  */
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 import java.sql.*;
 
 /**
  * @Description:
  * @Autho fangweiping
- * @Date: 2020/5/29 11:53 
+ * @Date: 2020/5/29 11:53
  */
 public class JDBCUtils {
 
