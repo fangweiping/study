@@ -1,5 +1,6 @@
 package com.fwp.demo.service;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.RegistryConfig;
 import com.alibaba.fastjson.JSON;
@@ -19,7 +20,9 @@ public class DubboTest {
         reference.setCheck(false);
         ReferenceConfigCache cache = ReferenceConfigCache.getCache();
         GenericService genericService = cache.get(reference);
-        Object method = genericService.$invoke("sayHello", new String[]{"java.lang.String"}, new Object[]{"hello"});
+        JSONObject jsonObject = JSON.parseObject("{\"id\": 1,\"user\": {\"age\": 1,\"username\": \"lis\"}}");
+
+        Object method = genericService.$invoke("testJson", new String[]{"java.util.Map"}, new Object[]{jsonObject});
         System.out.println("1111111111111111111111111111111111111111111"+JSON.toJSONString(method));
 
     }
