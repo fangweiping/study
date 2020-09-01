@@ -23,6 +23,8 @@ public class DubboTest {
         JSONObject jsonObject = JSON.parseObject("{\"id\": 1,\"user\": {\"age\": 1,\"username\": \"lis\"}}");
 
         Object method = genericService.$invoke("testJson", new String[]{"java.util.Map"}, new Object[]{jsonObject});
+        String className = method.getClass().getName();
+        System.out.println("className = " + className);
         System.out.println("1111111111111111111111111111111111111111111"+JSON.toJSONString(method));
 
     }
