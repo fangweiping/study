@@ -33,6 +33,9 @@ public class User {
     // 更新时间
     private Date updated;
 
+    //删除标记
+    private Boolean deleteFlag;
+
     @Override
     public String toString() {
         return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", name=" + name

@@ -4,4 +4,8 @@
         <select id="findAll" resultType="User">
             select * from tb_user
         </select>
+
+    <insert id="insert"  keyProperty="id" keyColumn="id" useGeneratedKeys="true" parameterType="User">
+        insert  tb_user(created,delete_flag) values(#{created},#{deleteFlag})
+    </insert>
     </mapper>

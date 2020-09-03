@@ -23,5 +23,12 @@ public class UserController {
         return userService.findAll();
     }
 
+    @GetMapping("insert")//http://localhost:8080/user/insert
+    public User insert(User user) {
+        //User user = new User();
+        //user.setDeleteFlag(true);
+        userService.insert(user);
+        return user;
+    }
 
 }
