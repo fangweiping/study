@@ -42,7 +42,7 @@ public class SyncSqlGenerateUtils {
             //通过执行者对象调用方法执行SQL语句,获取结果
             //int executeUpdate(String sql)  执行数据库中的SQL语句,仅限于insert,update,delete
             //返回值int,操作成功数据库的行数
-            String tableName= "htzq_xzsf";
+            String tableName= "tablename";
             stat.execute("select COLUMN_NAME from information_schema.COLUMNS where table_name = "+"'"+tableName+"'");
             ResultSet resultSet = stat.getResultSet();
             List<String> columnNameList = new ArrayList<>();
