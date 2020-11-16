@@ -26,12 +26,12 @@ public class SyncSqlGenerateUtils {
             Class.forName("com.mysql.jdbc.Driver");
             // 2. 获得连接
             // uri:数据库地址 jdbc:mysql://连接主机ip:端口号//数据库名字
-            String url = "jdbc:mysql://168.61.17.248/compliance_data";  //we7shop
+            String url = "jdbc:mysql://url/dataname";  //we7shop
             // static Connection getConnection(String url, String user, String password)
             // 返回值是java.sql.Connection接口的实现类,在MySQL驱动程序中
             //we7shop   账号
             //E6EZ7352Jo427uMt  密码
-            Connection conn = DriverManager.getConnection(url, "cep", "Htsc&cep@123");
+            Connection conn = DriverManager.getConnection(url, "user", "password");
             System.out.println(conn);// com.mysql.jdbc.JDBC4Connection@10d1f30
             // 3. 获得语句执行平台,通过数据库连接对象,获取到SQL语句的执行者对象
             //conn对象,调用方法 Statement createStatement() 获取Statement对象,将SQL语句发送到数据库
