@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dwl.rep.dao.ReportDetailMapper">
+  <resultMap id="BaseResultMap" type="com.dwl.rep.pojo.ReportDetail">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="rep_id" jdbcType="VARCHAR" property="repId" />
+    <result column="header_id" jdbcType="VARCHAR" property="headerId" />
+    <result column="sec_header_id" jdbcType="VARCHAR" property="secHeaderId" />
+    <result column="is_sum" jdbcType="VARCHAR" property="isSum" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="orders" jdbcType="INTEGER" property="orders" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, rep_id, header_id, sec_header_id, is_sum, type, orders
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from report_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from report_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByRepId" parameterType="java.lang.String">
+    delete from report_detail
+    where rep_id = #{repId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.dwl.rep.pojo.ReportDetail">
+    insert into report_detail (id, rep_id, header_id, 
+      sec_header_id, is_sum, type, orders
+      )
+    values (#{id,jdbcType=VARCHAR}, #{repId,jdbcType=VARCHAR}, #{headerId,jdbcType=VARCHAR}, 
+      #{secHeaderId,jdbcType=VARCHAR}, #{isSum,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{orders,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dwl.rep.pojo.ReportDetail">
+    insert into report_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="repId != null">
+        rep_id,
+      </if>
+      <if test="headerId != null">
+        header_id,
+      </if>
+      <if test="secHeaderId != null">
+        sec_header_id,
+      </if>
+      <if test="isSum != null">
+        is_sum,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="orders != null">
+        orders,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="repId != null">
+        #{repId,jdbcType=VARCHAR},
+      </if>
+      <if test="headerId != null">
+        #{headerId,jdbcType=VARCHAR},
+      </if>
+      <if test="secHeaderId != null">
+        #{secHeaderId,jdbcType=VARCHAR},
+      </if>
+      <if test="isSum != null">
+        #{isSum,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+       <if test="orders != null">
+        #{orders,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dwl.rep.pojo.ReportDetail">
+    update report_detail
+    <set>
+      <if test="repId != null">
+        rep_id = #{repId,jdbcType=VARCHAR},
+      </if>
+      <if test="headerId != null">
+        header_id = #{headerId,jdbcType=VARCHAR},
+      </if>
+      <if test="secHeaderId != null">
+        sec_header_id = #{secHeaderId,jdbcType=VARCHAR},
+      </if>
+      <if test="isSum != null">
+        is_sum = #{isSum,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+       <if test="orders != null">
+        orders = #{orders,jdbcType=INTEGER}
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dwl.rep.pojo.ReportDetail">
+    update report_detail
+    set rep_id = #{repId,jdbcType=VARCHAR},
+      header_id = #{headerId,jdbcType=VARCHAR},
+      sec_header_id = #{secHeaderId,jdbcType=VARCHAR},
+      is_sum = #{isSum,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      orders = #{orders,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
