@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+    <mapper namespace="com.hand.report.dao.UserMapper">
+        <select id="findAll" resultType="User">
+            select * from tb_user
+        </select>
+
+    <insert id="insert"  keyProperty="id" keyColumn="id" useGeneratedKeys="true" parameterType="User">
+        insert  tb_user(created,delete_flag) values(#{created},#{deleteFlag})
+    </insert>
+    </mapper>
