@@ -1,6 +1,6 @@
 package com.hand.report.service.impl;
 
-import com.hand.report.dao.DbInfoMapper;
+import com.hand.report.dao.DataSourceInfoMapper;
 import com.hand.report.entity.DbInfo;
 import com.hand.report.service.DbService;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.List;
 public class DbServiceImpl implements DbService {
 
 	@Resource
-	private DbInfoMapper dbInfoMapper;
+	private DataSourceInfoMapper dbInfoMapper;
 
 	@Override
 	public List<DbInfo> getInfoList(){

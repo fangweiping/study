@@ -1,7 +1,22 @@
 package com.hand.report.common;
 
 import com.hand.report.entity.DbInfo;
+import com.hand.report.entity.TableInfo;
 import org.apache.commons.dbcp.BasicDataSource;
+
+import javax.naming.Name;
+import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * 数据源
@@ -28,11 +43,22 @@ public interface DataBase {
 	 */
 	String getDbType();
 
-	/**
-	 * 返回数据源
+    /**
+     * 返回表名
+     * @return
+     */
+     List<TableInfo> getTableInfo(DbInfo dbInfo);
+
+    /**
+     * 返回字段
+     */
+    List<TableInfo> getTableInfo(TableInfo tableInfo);
+
+    /**
+	 * 创建数据源
 	 * @return
 	 */
-	default BasicDataSource getDataSource(DbInfo dbInfo){
+	default BasicDataSource createDataSource(DbInfo dbInfo){
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName(this.getDriver());
 		dataSource.setUrl(dbInfo.getDbAddress());
@@ -60,5 +86,42 @@ public interface DataBase {
 		return dataSource;
 
 	}
+
+    /**
+     * 处理结果集
+     */
+    default <T> List<T> handResult(ResultSet resultSet,T resultType) throws Exception {
+        if(resultSet==null)
+            return null;
+        Class<?> c = resultType.getClass();
+        /* Type t = c.getGenericSuperclass();
+        if (t instanceof ParameterizedType) {
+            Type[] p = ((ParameterizedType) t).getActualTypeArguments();
+            c = (Class<T>) p[0];
+        }*/
+        List<T> list = new ArrayList<>();
+        Map<String, Field> fieldMap = Arrays.stream(c.getDeclaredFields()).collect(Collectors.toMap(Field::getName, Function.identity()));
+        ResultSetMetaData metaData = resultSet.getMetaData();
+        List<String> columnNames = new ArrayList<>();
+        for (int i = 0; i < metaData.getColumnCount(); i++) {
+            columnNames.add(metaData.getColumnName(i));
+        }
+        while (resultSet.next()) {
+            columnNames.forEach(columnName->{
+                try {
+                    fieldMap.get(columnName).set(resultType, resultSet.getString(columnName));
+                    list.add(resultType);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        }
+        return list;
+    }
+
+    /**
+     * 执行sql
+     */
+    void executeSql();
 
 }

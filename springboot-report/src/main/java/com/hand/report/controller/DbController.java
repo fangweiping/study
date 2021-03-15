@@ -34,7 +34,7 @@ public class DbController {
      */
 	@RequestMapping("/getInfoList")
 	public List<DbInfo> getInfoList(){
-	    return 	dbService.getInfoList();
+	    return DataBaseFactory.getDataSource();
 	}
 
     /**

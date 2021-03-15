@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dwl.rep.dao.DbInfoMapper">
-  <resultMap id="BaseResultMap" type="com.dwl.rep.pojo.DbInfo">
+  <resultMap id="BaseResultMap" type="com.hand.report.entity.DbInfo">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="db_name" jdbcType="VARCHAR" property="dbName" />
     <result column="db_type" jdbcType="VARCHAR" property="dbType" />
@@ -15,13 +15,13 @@
     id, db_name, db_type, db_address, user_id, password, level, status
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from db_info
     where id = #{id,jdbcType=VARCHAR}
   </select>
    <select id="getInfoList" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from db_info
   </select>
@@ -33,11 +33,11 @@
     where id = #{id,jdbcType=VARCHAR}
   </delete>
   <insert id="insert" parameterType="com.dwl.rep.pojo.DbInfo">
-    insert into db_info (id, db_name, db_type, 
-      db_address, user_id, password, 
+    insert into db_info (id, db_name, db_type,
+      db_address, user_id, password,
       level, status)
-    values (#{id,jdbcType=VARCHAR}, #{dbName,jdbcType=VARCHAR}, #{dbType,jdbcType=VARCHAR}, 
-      #{dbAddress,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=VARCHAR}, #{dbName,jdbcType=VARCHAR}, #{dbType,jdbcType=VARCHAR},
+      #{dbAddress,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{level,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.dwl.rep.pojo.DbInfo">

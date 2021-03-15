@@ -2,6 +2,8 @@ package com.hand.report.entity;
 
 import lombok.Data;
 
+import javax.sql.DataSource;
+
 @Data
 public class DbInfo {
     /**
@@ -44,4 +46,8 @@ public class DbInfo {
      */
     private String status;
 
+    /**
+     * 数据源
+     */
+    private transient DataSource dataSource;
 }

@@ -5,7 +5,7 @@ import com.hand.report.entity.DbInfo;
 
 import java.util.List;
 
-public interface DbInfoMapper {
+public interface DataSourceInfoMapper {
     int deleteByPrimaryKey(String id);
 
     int insert(DbInfo record);

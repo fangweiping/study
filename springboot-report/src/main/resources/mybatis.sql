@@ -16,7 +16,7 @@ Date: 2014-11-27 11:00:43
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for tb_item
+-- BaseTable structure for tb_item
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_item`;
 CREATE TABLE `tb_item` (
@@ -34,7 +34,7 @@ INSERT INTO `tb_item` VALUES ('1', 'iPhone 6', '5288.0', '苹果公司新发布�
 INSERT INTO `tb_item` VALUES ('2', 'iPhone 6 plus', '6288.0', '苹果公司发布的新大屏手机。');
 
 -- ----------------------------
--- Table structure for tb_order
+-- BaseTable structure for tb_order
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_order`;
 CREATE TABLE `tb_order` (
@@ -54,7 +54,7 @@ INSERT INTO `tb_order` VALUES ('2', '2', '20140921002');
 INSERT INTO `tb_order` VALUES ('3', '1', '20140921003');
 
 -- ----------------------------
--- Table structure for tb_orderdetail
+-- BaseTable structure for tb_orderdetail
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_orderdetail`;
 CREATE TABLE `tb_orderdetail` (
@@ -79,7 +79,7 @@ INSERT INTO `tb_orderdetail` VALUES ('3', '2', '2', '6288', '1');
 INSERT INTO `tb_orderdetail` VALUES ('4', '3', '1', '5288', '1');
 
 -- ----------------------------
--- Table structure for tb_user
+-- BaseTable structure for tb_user
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_user`;
 CREATE TABLE `tb_user` (
