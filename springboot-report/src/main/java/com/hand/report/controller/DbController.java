@@ -15,9 +15,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
- * 数据库控制器
- *
- * @author dwl
+ * @author fwp
+ * @version 1.0.0
+ * @Description TODO
+ * @createTime 2021/3/16 1:18 :00
  */
 @RestController
 @RequestMapping("/db")

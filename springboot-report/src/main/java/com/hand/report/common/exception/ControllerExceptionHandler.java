@@ -7,6 +7,12 @@ import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+/**
+ * @author fwp
+ * @version 1.0.0
+ * @Description TODO
+ * @createTime 2021/3/16 1:17 :00
+ */
 @Slf4j
 @RestControllerAdvice
 public class ControllerExceptionHandler {
