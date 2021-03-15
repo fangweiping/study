@@ -1,16 +1,14 @@
-package com.hand.report.common;
+package com.hand.report.common.db;
 
 import com.hand.report.entity.DbInfo;
 import com.hand.report.entity.TableInfo;
 import org.apache.commons.dbcp.BasicDataSource;
 
-import javax.naming.Name;
 import java.lang.reflect.Field;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -122,6 +120,16 @@ public interface DataBase {
     /**
      * 执行sql
      */
-    void executeSql();
-
+    default  <T> List<T> executeSql(String dbId, String sql,T resultType) {
+        try (Connection connection =  DataBaseFactory.getInstance().getConnection(DbInfo.builder().id(dbId).build());
+             Statement statement = connection.createStatement()
+        ) {
+            statement.execute(sql);
+            ResultSet resultSet = statement.getResultSet();
+            return  handResult(resultSet, resultType);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

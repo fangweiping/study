@@ -1,6 +1,9 @@
 package com.hand.report.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 取号
@@ -8,6 +11,9 @@ import lombok.Data;
  *
  */
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class NumInfo {
     /**
      * 主键

@@ -1,12 +1,12 @@
 package com.hand.report.common.db.impl;
 
-import com.hand.report.common.DataBase;
-import com.hand.report.common.DataBaseFactory;
+import com.hand.report.common.db.DataBase;
+import com.hand.report.common.db.DataBaseFactory;
 import com.hand.report.entity.DbInfo;
 import com.hand.report.entity.TableInfo;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.List;
@@ -14,9 +14,7 @@ import java.util.List;
 public class MySQLBase implements DataBase {
 
     @Override
-    public String getDriver() {
-        return "com.mysql.jdbc.Driver";
-    }
+    public String getDriver() { return "com.mysql.jdbc.Driver"; }
 
     @Override
     public String getLinkSql() {
@@ -30,8 +28,7 @@ public class MySQLBase implements DataBase {
 
     @Override
     public List<TableInfo> getTableInfo(DbInfo dbInfo) {
-        DataSource dataSource = DataBaseFactory.getDataSource(dbInfo.getId());
-        try (Connection connection = dataSource.getConnection();
+        try (Connection connection =  DataBaseFactory.getInstance().getConnection(dbInfo);
              Statement statement = connection.createStatement()
         ) {
             String sql = "select table_name tableName,table_comment tableComment from information_schema.tables where table_schema = (select database())";
@@ -47,12 +44,11 @@ public class MySQLBase implements DataBase {
 
     @Override
     public List<TableInfo> getTableInfo(TableInfo tableInfo) {
-        DataSource dataSource = DataBaseFactory.getDataSource(tableInfo.getDbId());
-        try (Connection connection = dataSource.getConnection();
-             Statement statement = connection.createStatement()
+        try (Connection connection = DataBaseFactory.getInstance().getConnection(DbInfo.builder().id(tableInfo.getDbId()).build());
+             PreparedStatement statement = connection.prepareStatement("select table_name tableName,column_name columnName,column_comment columnComment from information_schema.columns where table_name = ?")
         ) {
-            String sql = "select table_name tableName,column_name columnName,column_comment columnComment from information_schema.columns where table_name = 'book'";
-            statement.execute(sql);
+            statement.setString(1, tableInfo.getTableName());
+            statement.execute();
             ResultSet resultSet = statement.getResultSet();
             List<TableInfo> list = handResult(resultSet, new TableInfo());
             return list;
@@ -61,12 +57,4 @@ public class MySQLBase implements DataBase {
         }
         return null;
     }
-
-    @Override
-    public void executeSql(DbInfo dbInfo) {
-
-
-    }
-
-
 }

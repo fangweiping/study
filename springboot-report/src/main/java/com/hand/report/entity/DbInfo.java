@@ -1,10 +1,15 @@
 package com.hand.report.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.sql.DataSource;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class DbInfo {
     /**
      * 主键
@@ -45,9 +50,4 @@ public class DbInfo {
      * 状态
      */
     private String status;
-
-    /**
-     * 数据源
-     */
-    private transient DataSource dataSource;
 }

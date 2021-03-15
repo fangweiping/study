@@ -1,7 +1,8 @@
-package com.hand.report.common;
+package com.hand.report.common.db;
 
 import com.hand.report.common.db.impl.*;
 import com.hand.report.entity.DbInfo;
+import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
 
@@ -11,9 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -25,7 +24,7 @@ public class DataBaseFactory implements Serializable {
 
     private static DataBaseFactory dataBaseFactory = null;
 
-    private static Map<String, DbInfo> dbInfoMap = new HashMap<>();
+    private static Map<String, DataSource> dataSourceMap = new HashMap<>();
 
     public enum BaseType {
 
@@ -96,10 +95,10 @@ public class DataBaseFactory implements Serializable {
      */
     public Connection getConnection(DbInfo dbInfo) {
         Connection connection = null;
-        if (!dbInfoMap.containsKey(dbInfo.getId()))
+        if (!dataSourceMap.containsKey(dbInfo.getId()))
             addDataSource(dbInfo);
         try {
-            connection = dbInfoMap.get(dbInfo.getId()).getDataSource().getConnection();
+            connection = dataSourceMap.get(dbInfo.getId()).getConnection();
         } catch (SQLException e) {
             removeDataSource(dbInfo);
             log.info(dbInfo.getDbName() + " -无法获取连接！");
@@ -108,6 +107,7 @@ public class DataBaseFactory implements Serializable {
         return connection;
     }
 
+
     /**
      * 添加数据源
      *
@@ -115,10 +115,10 @@ public class DataBaseFactory implements Serializable {
      */
     public void addDataSource(DbInfo dbInfo) {
         synchronized (DataBaseFactory.class) {
-            if (!dbInfoMap.containsKey(dbInfo.getId())) {
-                dbInfo.setDataSource(createDataSource(dbInfo));
-                dbInfoMap.put(dbInfo.getId(), dbInfo);
-                writeObjet();
+            if (!dataSourceMap.containsKey(dbInfo.getId())) {
+                BasicDataSource dataSource = createDataSource(dbInfo);
+                dataSourceMap.put(dbInfo.getId(), dataSource);
+                //writeObjet();
             }
         }
     }
@@ -144,12 +144,12 @@ public class DataBaseFactory implements Serializable {
      * @param dbInfo
      */
     public void removeDataSource(DbInfo dbInfo) {
-        BasicDataSource dataSource = (BasicDataSource) dbInfoMap.get(dbInfo.getId()).getDataSource();
+        BasicDataSource dataSource = (BasicDataSource) dataSourceMap.get(dbInfo.getId());
         if (dataSource != null) {
             try {
                 dataSource.close();
-                dbInfoMap.remove(dbInfo.getId());
-                writeObjet();
+                dataSourceMap.remove(dbInfo.getId());
+                //writeObjet();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -213,7 +213,7 @@ public class DataBaseFactory implements Serializable {
         try (FileOutputStream fos = new FileOutputStream("dataSource.txt");
              ObjectOutputStream oos = new ObjectOutputStream(fos)
         ) {
-            oos.writeObject(dbInfoMap);
+            oos.writeObject(dataSourceMap);
             oos.flush();
         } catch (Exception e) {
             e.printStackTrace();
@@ -229,7 +229,7 @@ public class DataBaseFactory implements Serializable {
         try (FileInputStream fis = new FileInputStream("dataSource.txt");
              ObjectInputStream ois = new ObjectInputStream(fis)
         ) {
-            dbInfoMap = (Map<String, DbInfo>) ois.readObject();
+            dataSourceMap = (Map<String, DataSource>) ois.readObject();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -237,17 +237,10 @@ public class DataBaseFactory implements Serializable {
 
     /**
      * 返回数据源信息
+     * @param dbInfo
      * @return
      */
-    public static List<DbInfo> getDataSource() {
-        return (List<DbInfo>) dbInfoMap.values();
-    }
-
-    /**
-     * 返回数据源信息
-     * @return
-     */
-    public static DataSource getDataSource(String dbId) {
-        return dbInfoMap.get(dbId).getDataSource();
+    public static DataSource getDataSource(DbInfo dbInfo) {
+        return dataSourceMap.get(dbInfo.getId());
     }
 }
