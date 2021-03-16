@@ -32,7 +32,7 @@
     delete from db_info
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.dwl.rep.pojo.DbInfo">
+  <insert id="insert" parameterType="com.hand.report.entity.DbInfo">
     insert into db_info (id, db_name, db_type,
       db_address, user_id, password,
       level, status)
@@ -40,7 +40,7 @@
       #{dbAddress,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{level,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.dwl.rep.pojo.DbInfo">
+  <insert id="insertSelective" parameterType="com.hand.report.entity.DbInfo">
     insert into db_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -95,7 +95,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.dwl.rep.pojo.DbInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.hand.report.entity.DbInfo">
     update db_info
     <set>
       <if test="dbName != null">
@@ -122,7 +122,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.dwl.rep.pojo.DbInfo">
+  <update id="updateByPrimaryKey" parameterType="com.hand.report.entity.DbInfo">
     update db_info
     set db_name = #{dbName,jdbcType=VARCHAR},
       db_type = #{dbType,jdbcType=VARCHAR},

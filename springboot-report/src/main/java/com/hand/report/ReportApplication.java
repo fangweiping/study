@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan("com.hand.report.dao")
-public class MybatisApplication {
+public class ReportApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MybatisApplication.class, args);
+        SpringApplication.run(ReportApplication.class, args);
     }
 }

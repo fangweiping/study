@@ -5,13 +5,11 @@ import com.hand.report.common.db.DataBaseFactory;
 import com.hand.report.common.util.ResultFactory;
 import com.hand.report.common.util.ResultObject;
 import com.hand.report.dao.TableMapper;
+import com.hand.report.entity.BaseCount;
 import com.hand.report.entity.DbInfo;
 import com.hand.report.entity.TableInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,8 +23,8 @@ import java.util.List;
 @RequestMapping("/table")
 public class TableController {
 
-    @Autowired
-    private TableMapper tableMapper;
+    //@Autowired
+    //private TableMapper tableMapper;
 
     /**
      * 获取数据库表名
@@ -48,6 +46,17 @@ public class TableController {
     public ResultObject<List<TableInfo>> getColumnName(@RequestBody TableInfo tableInfo) {
         DataBase dataBase = DataBaseFactory.getInstance().getDataBase(DbInfo.builder().id(tableInfo.getDbId()).build());
         return ResultFactory.success( dataBase.getTableInfo(tableInfo));
+    }
+
+    /**
+     * 统计
+     *
+     * @return
+     */
+    @PostMapping("/count")
+    public ResultObject<List<BaseCount>> executeSql(@RequestBody TableInfo tableInfo) {
+        DataBase dataBase = DataBaseFactory.getInstance().getDataBase(DbInfo.builder().id(tableInfo.getDbId()).build());
+        return ResultFactory.success(dataBase.executeSql(tableInfo.getDbId(), tableInfo.getExecuteSql(), new BaseCount()));
     }
 
 }

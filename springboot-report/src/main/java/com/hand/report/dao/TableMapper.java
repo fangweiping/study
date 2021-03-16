@@ -1,6 +1,7 @@
 package com.hand.report.dao;
 
-public class TableMapper {
+
+public interface TableMapper {
 
 
 }

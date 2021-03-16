@@ -1,5 +1,6 @@
 package com.hand.report.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,5 +40,11 @@ public class TableInfo {
      * 字段注释
      */
     private String columnComment;
+
+    /**
+     * 执行sql
+     */
+    @JsonIgnore
+    private String executeSql;
 
 }

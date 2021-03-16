@@ -7,11 +7,13 @@ import org.springframework.validation.BindException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.sql.SQLException;
+
 /**
  * @author fwp
  * @version 1.0.0
- * @Description TODO
- * @createTime 2021/3/16 1:17 :00
+ * @Description 统一异常处理
+ * @createTime 2021/3/16 1:17:00
  */
 @Slf4j
 @RestControllerAdvice
@@ -27,6 +29,12 @@ public class ControllerExceptionHandler {
     public ResultObject handleRuntimeException(RuntimeException e) {
         log.error(e.getMessage(), e);
         return ResultFactory.error(e.getMessage());
+    }
+
+    @ExceptionHandler(SQLException.class)
+    public ResultObject handleSQLException(SQLException e) {
+        log.error(e.getMessage(), e);
+        return ResultFactory.error("sql执行异常:"+e.getMessage());
     }
 
     @ExceptionHandler(ServiceException.class)
