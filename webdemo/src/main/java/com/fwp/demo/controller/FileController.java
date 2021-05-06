@@ -21,7 +21,7 @@ public class FileController {
     @GetMapping("resource")
     public String getResourceFile(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //获取资源路径
-        InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream("files\\1.csv");
+        InputStream resourceAsStream = this.getClass().getClassLoader().getResourceAsStream("1.csv");
         //获取输出流
         ServletOutputStream outputStream = response.getOutputStream();
 

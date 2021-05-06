@@ -8,7 +8,8 @@ import org.apache.dubbo.config.ReferenceConfig;
 import org.apache.dubbo.config.utils.ReferenceConfigCache;
 import org.apache.dubbo.rpc.service.GenericService;
 
-public class DubboTest {
+public class
+DubboTest {
     public static void main(String[] args) {
         ReferenceConfig<GenericService> reference = new ReferenceConfig<>();
         reference.setApplication(new ApplicationConfig("dubbo-consumer1"));

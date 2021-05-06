@@ -33,7 +33,8 @@ import java.util.stream.Stream;
  */
 @Slf4j
 @SuppressWarnings("all")
-public class PolayoutuDemo {
+public class
+PolayoutuDemo {
 
     // 访问地址
     private static String URL = "http://www.ktbdqn.com/";
