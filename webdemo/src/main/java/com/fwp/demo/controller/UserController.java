@@ -14,6 +14,11 @@ public class UserController {
     @Login("开始登陆")
     public String doLogin() {
         RespResult resp = new RespResult();
+        try {
+            int i = 1/0;
+        } catch (Exception e) {
+
+        }
         resp.setCode(200);
         resp.setMsg("登陆成功");
         resp.setData(null);
