@@ -13,6 +13,6 @@ dubbo:
     name: dubbo
     port: 20881 #dubbo服务暴露的端口  消费者和生产不能一样
   scan:
-    base-packages: com.fwp.demo.controller #扫描的包名
+    base-packages: com.hand.report.controller #扫描的包名
 
 

@@ -1,6 +1,6 @@
 //package com.sgwl.filemanager.controller;
 //
-//import com.sgwl.filemanager.repository.ChatMapper;
+//import com.sgwl.filemanager.dao.ChatMapper;
 //import com.sgwl.filemanager.po.ChatPo;
 //import org.springframework.beans.design.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.RequestMapping;

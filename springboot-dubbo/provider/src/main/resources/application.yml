@@ -13,4 +13,4 @@ dubbo:
     name: dubbo
     port: 20880 #dubbo服务暴露的端口
   scan:
-    base-packages: com.fwp.demo.service #扫描的包名
+    base-packages: com.hand.report.service #扫描的包名

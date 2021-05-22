@@ -1,0 +1,5 @@
+<root>
+    <item name='org.aspectj.lang.annotation.AfterReturning'>
+        <annotation name='java.lang.Deprecated'/>
+    </item>
+</root>

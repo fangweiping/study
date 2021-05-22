@@ -13,6 +13,6 @@ mybatis:
   #mapper配置文件
   mapper-locations: classpath:mapper/*.xml
   #开启驼峰命名
-  type-aliases-package: com.fwp.demo.entity
+  type-aliases-package: com.hand.report.entity
   configuration:
     map-underscore-to-camel-case: true
