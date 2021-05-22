@@ -1,5 +1,6 @@
 package thread.threadPool;
 
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.Executors;
 
 /**
@@ -13,4 +14,11 @@ public class ThreadPoolDemo {
         Executors.newScheduledThreadPool(10);//创建一个定长线程池，支持定时及周期性任务执行。
         Executors.newWorkStealingPool();//jdk8出的
     }
+
+    /**
+     * 线程池工作原理
+     */
+
+
+
 }
