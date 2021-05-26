@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dwl.rep.dao.DbInfoMapper">
-  <resultMap id="BaseResultMap" type="com.hand.report.entity.DbInfo">
+  <resultMap id="BaseResultMap" type="com.fwp.demo.entity.DbInfo">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="db_name" jdbcType="VARCHAR" property="dbName" />
     <result column="db_type" jdbcType="VARCHAR" property="dbType" />
@@ -32,7 +32,7 @@
     delete from db_info
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.hand.report.entity.DbInfo">
+  <insert id="insert" parameterType="com.fwp.demo.entity.DbInfo">
     insert into db_info (id, db_name, db_type,
       db_address, user_id, password,
       level, status)
@@ -40,7 +40,7 @@
       #{dbAddress,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
       #{level,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.hand.report.entity.DbInfo">
+  <insert id="insertSelective" parameterType="com.fwp.demo.entity.DbInfo">
     insert into db_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -95,7 +95,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.hand.report.entity.DbInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.fwp.demo.entity.DbInfo">
     update db_info
     <set>
       <if test="dbName != null">
@@ -122,7 +122,7 @@
     </set>
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.hand.report.entity.DbInfo">
+  <update id="updateByPrimaryKey" parameterType="com.fwp.demo.entity.DbInfo">
     update db_info
     set db_name = #{dbName,jdbcType=VARCHAR},
       db_type = #{dbType,jdbcType=VARCHAR},
