@@ -8,6 +8,7 @@ public class StaticTest {
     }
 
     public static void main(String[] args) {
+        //F-02
         long a = 0L;
         System.out.println(a=0);
 
