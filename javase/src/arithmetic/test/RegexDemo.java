@@ -8,11 +8,12 @@ import java.util.regex.Pattern;
 /**
  * @Description:
  * @Autho fangweiping
- * @Date: 2020/5/16 13:36 
+ * @Date: 2020/5/16 13:36
  */
 public class RegexDemo {
 
     public static void main(String[] args) {
+        //F-01
 
         String content = "SH34324243";
 
