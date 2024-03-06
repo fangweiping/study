@@ -2,7 +2,7 @@ package com.fwp.demo.common.db;
 
 import com.fwp.demo.common.db.impl.*;
 import com.fwp.demo.entity.DbInfo;
-import com.hand.report.common.db.impl.*;
+//import com.hand.report.common.db.impl.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
 
