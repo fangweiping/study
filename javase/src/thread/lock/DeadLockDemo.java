@@ -25,7 +25,7 @@ public class DeadLockDemo {
                     }
                     System.out.println("线程1获取lockB中......");
                     synchronized (lockB) {
-
+                        System.out.println("线程1已获取lockB");
                     }
                 }
             }
@@ -41,6 +41,7 @@ public class DeadLockDemo {
                     }
                     System.out.println("线程2获取lockA中......");
                     synchronized (lockA) {
+                        System.out.println("线程2已获取lockA");
                     }
                 }
             }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 /**
@@ -19,5 +20,17 @@ public class Demo1 {
         ArrayList<User> list = new ArrayList<>();
         Map<Integer, List<User>> map = list.stream().sorted(((o1, o2) -> o2.getGrade() - o1.getGrade())).collect(Collectors.groupingBy(User::getAge));
         System.out.println(map);
+        list.parallelStream().forEach(a ->{
+
+
+
+        });
+
+        ThreadLocal threadLocal = new ThreadLocal();
+        threadLocal.set("nihao");
+        Object o = threadLocal.get();
+        System.out.println("o = " + o);
+
+
     }
 }
