@@ -20,6 +20,20 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
 
+    /**
+     * CREATE TABLE `t_user` (
+     *   `id` int NOT NULL AUTO_INCREMENT COMMENT '用户id',
+     *   `username` varchar(50) NOT NULL COMMENT '用户名',
+     *   `password` varchar(50) NOT NULL COMMENT '用户密码',
+     *   `created_time` timestamp NOT NULL COMMENT '创建时间',
+     *   `created_by` varchar(50) NOT NULL COMMENT '创建人',
+     *   `updated_time` timestamp NOT NULL COMMENT '修改时间',
+     *   `updated_by` varchar(50) NOT NULL COMMENT '修改人',
+     *   PRIMARY KEY (`id`),
+     *   UNIQUE KEY `uniq_username` (`username`) USING BTREE
+     * ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+     */
+
     @Autowired
     private UserService userService;
 
