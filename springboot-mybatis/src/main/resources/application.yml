@@ -7,7 +7,7 @@ spring:
 #    url: jdbc:mysql://localhost:3307/test?characterEncoding=utf-8&serverTimezone=GMT&useSSL=false
 #    username: root
 #    password: root123
-    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf-8&serverTimezone=GMT&useSSL=false
+    url: jdbc:mysql://localhost:3306/db01?characterEncoding=utf-8&serverTimezone=GMT&useSSL=false
     username: root
     password: root
     hikari:

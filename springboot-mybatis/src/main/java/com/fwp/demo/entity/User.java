@@ -10,7 +10,7 @@ public class User {
     private Long id;
 
     // 用户名
-    private String userName;
+    private String username;
 
     // 密码
     private String password;
@@ -38,7 +38,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", userName=" + userName + ", password=" + password + ", name=" + name
+        return "User [id=" + id + ", username=" + username + ", password=" + password + ", name=" + name
                 + ", age=" + age + ", sex=" + sex + ", birthday=" + birthday + ", created=" + created
                 + ", updated=" + updated + "]";
     }

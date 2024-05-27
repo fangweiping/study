@@ -2,12 +2,10 @@ package com.fwp.demo.service;
 
 import com.fwp.demo.entity.User;
 
-import java.util.List;
 
 public interface UserService {
 
-    List<User> findAll();
+    User queryUserByUserName(String userName);
 
-    void insert(User user);
 }
 
