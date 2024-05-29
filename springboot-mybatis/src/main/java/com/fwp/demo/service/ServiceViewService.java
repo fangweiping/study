@@ -14,12 +14,12 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class ServiceViewService {
 
-    @Autowired(required = false)
+    @Autowired
     private Jedis jedis;
 
     private ScheduledExecutorService schedule = Executors.newScheduledThreadPool(1);
 
-    public void update(ServiceView serviceView) {
+    public void  update(ServiceView serviceView) {
         String businessKey = "serviceView:" + serviceView.getId();
         Thread thread = Thread.currentThread();
         String threadId = String.valueOf(thread.getId() + System.currentTimeMillis());
@@ -29,13 +29,16 @@ public class ServiceViewService {
                 //通过定时任务为当前线程持有的锁续期，2s后执行，每2s执行一次
                 watchDog = schedule.scheduleAtFixedRate(() -> {
                     if (threadId.equals(jedis.get(businessKey))) {
+                        //重新续期3s
                         jedis.expire(businessKey, 3);
                     }
                 }, 2, 2, TimeUnit.SECONDS);
                 //业务处理
+
             }
         } catch (Exception e) {
             //异常处理
+
         } finally {
             //取消续期任务
             if (watchDog != null) {
