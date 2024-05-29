@@ -21,7 +21,7 @@ public class MenuService {
     }
 
     public List<Menu> buildMenuTree(List<Menu> menuList) {
-        List<Menu> rootList = menuList.stream().filter(menu -> Objects.isNull(menu.getParentId())).collect(Collectors.toList());
+        List<Menu> rootList = menuList.stream().filter(menu -> Objects.isNull(menu.getPid())).collect(Collectors.toList());
         for (Menu menu : rootList) {
             getSubList(menu, menuList);
         }
@@ -30,9 +30,9 @@ public class MenuService {
 
     public void getSubList(Menu menu, List<Menu> menuList) {
         for (Menu m : menuList) {
-            if (menu.getId().equals(m.getParentId())) {
+            if (menu.getId().equals(m.getPid())) {
                 menu.getSubList().add(m);
-                getSubList(menu, menuList);
+                getSubList(m , menuList);
             }
         }
     }

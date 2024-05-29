@@ -8,15 +8,15 @@ import java.util.List;
 @Data
 public class Menu {
 
-    private Long id;
+    private Integer id;
 
     private String name;
 
-    private String link;
+    private String url;
 
-    private Long parentId;
+    private Integer pid;
 
-    private Long orderNum;
+    private Integer orderNum;
 
     private List<Menu> subList = new ArrayList<>();
 
