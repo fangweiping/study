@@ -39,6 +39,10 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody UserLoginRequest request, HttpServletResponse response) {
+
+        System.out.println(Thread.currentThread().getId());
+
+
         User user = userService.queryUserByUserName(request.getUsername());
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         if (user == null || !passwordEncoder.matches(request.getPassword(), user.getPassword())) {
