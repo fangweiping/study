@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fwp.demo.dao.ApprovalMapper">
+
+<insert id="insert">
+        insert into t_approval(content,status,d_flag) values(#{content},#{status},0)
+    </insert>
+
+<update id="deleteById">
+        update t_approval set d_flag = 1 where id = #{id}
+    </update>
+
+<update id="update">
+       update t_approval set content = #{content} ,status = #{status} where id = #{id}
+    </update>
+
+<select id="queryById">
+        select id,content,status from t_approval where id = #{id}
+    </select>
+</mapper>
