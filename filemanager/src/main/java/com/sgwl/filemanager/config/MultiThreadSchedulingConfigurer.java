@@ -10,7 +10,7 @@ import java.util.concurrent.Executors;
  * 定时任务线程池配置类
  */
 @Configuration
-public class MultiThreadSchedulingConfigurer implements SchedulingConfigurer {
+public class  MultiThreadSchedulingConfigurer implements SchedulingConfigurer {
 
     @Override
     public void configureTasks(ScheduledTaskRegistrar scheduledTaskRegistrar) {
