@@ -1,4 +1,4 @@
-package com.fwp.demo.config;
+package com.fwp.demo.config.datasource;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.boot.context.properties.ConfigurationProperties;
