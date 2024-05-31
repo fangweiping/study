@@ -1,4 +1,4 @@
-package com.fwp.study.config;
+package com.fwp.study.config.mq;
 
 import org.springframework.amqp.core.*;
 import org.springframework.beans.factory.annotation.Qualifier;
