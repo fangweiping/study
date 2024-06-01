@@ -1,4 +1,4 @@
-package com.fwp.study.config;
+package com.fwp.study.config.nosql;
 
 import org.springframework.context.annotation.Configuration;
 
