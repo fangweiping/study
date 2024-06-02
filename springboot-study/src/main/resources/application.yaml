@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   application:
-    name: webdemo
+    name: springboot-sduty
 
 #数据源
   datasource:
@@ -39,6 +39,25 @@ spring:
     poolMaxIdle : 10  #连接池中的最大空闲连接
     poolMaxWait : 3   #连接池最大阻塞等待时间（使用负值表示没有限制）
 
+  rocketmq:
+    name-server: 127.0.0.1:9876
+    # 生产者
+    producer:
+      group: boot_group_1
+      # 消息发送超时时间
+      send-message-timeout: 3000
+      # 消息最大长度4M
+      max-message-size: 4096
+      # 消息发送失败重试次数
+      retry-times-when-send-failed: 3
+      # 异步消息发送失败重试次数
+      retry-times-when-send-async-failed: 2
+    # 消费者
+    consumer:
+      group: boot_group_1
+      # 每次提取的最大消息数
+      pull-batch-size: 5
+
 
 
 #logging:
@@ -52,10 +71,12 @@ spring:
 #          defaultlog: info
 
 
-  rabbitmq:
-    host: 127.0.0.1
-    port: 5672
-    username: guest
-    passowrd: guest
-    virtualHost: /
+#  rabbitmq:
+#    host: 127.0.0.1
+#    port: 5672
+#    username: guest
+#    passowrd: guest
+#    virtualHost: /
+
+
 
