@@ -11,7 +11,7 @@ public class PayContext {
         this.payStrategy = payStrategy;
     }
 
-    public PayResult excuteStartegy(PayParam payParam) {
+    public PayResult executePayStrategy(PayParam payParam) {
         return payStrategy.pay(payParam);
     }
 
@@ -19,6 +19,6 @@ public class PayContext {
         AliPay aliPay = new AliPay();
         PayContext payContext = new PayContext(aliPay);
         PayParam payParam = new PayParam();
-        payContext.excuteStartegy(payParam);
+        payContext.executePayStrategy(payParam);
     }
 }
