@@ -20,7 +20,7 @@ public class ProcessConfigSingleton {
         if (processConfigSingleton == null) {
             synchronized (ProcessConfigSingleton.class) {
                 if (processConfigSingleton == null) {
-                    new ProcessConfigSingleton();
+                    processConfigSingleton = new ProcessConfigSingleton();
                 }
             }
         }
