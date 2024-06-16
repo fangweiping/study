@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RocketMQService {
 
-    @Autowired
+    @Autowired(required = false)
     private RocketMQTemplate rocketMQTemplate;
 
     /**

@@ -32,7 +32,8 @@ spring:
       max-pool-prepared-statement-per-connection-size: 20
 #redis配置
   redis:
-    host: 47.113.111.240
+#    host: 47.113.111.240
+    host: 127.0.0.1
     port: 6379
     timeout: 3        #连接超时时间（毫秒）
     poolMaxTotal: 10  #连接池中的最大连接数

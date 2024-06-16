@@ -24,7 +24,7 @@ import javax.sql.DataSource;
  * @createTime 2021/06/16 15:41:00
  */
 @Configuration
-@MapperScan(value = "com.fwp.demo.mapper" ,sqlSessionTemplateRef = "firstSqlSessionTemplate")
+@MapperScan(value = "com.fwp.study.mapper" ,sqlSessionTemplateRef = "firstSqlSessionTemplate")
 public class FirstDataSourceConfiguration {
 
     @Bean(name = "firstDataSource")
@@ -42,7 +42,7 @@ public class FirstDataSourceConfiguration {
         Interceptor[] interceptor = new Interceptor[]{new PageHelper()};
         bean.setPlugins(interceptor);
 
-        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResource("classpath*:cn/com/htsc/base/mapper/*.xml"));
+        bean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath*:mapper/*.xml"));
         return bean.getObject();
     }
 
