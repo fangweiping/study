@@ -1,6 +1,6 @@
 package com.fwp.study.controller;
 
-import com.fwp.study.config.nosql.RedisConfig;
+import com.fwp.study.config.redis.RedisConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

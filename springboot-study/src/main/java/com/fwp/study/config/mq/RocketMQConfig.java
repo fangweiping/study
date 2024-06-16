@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RocketMQConfig {
 
-    @Value("${rocketmq.name-server}")
+   /* @Value("${rocketmq.name-server}")
     private String nameServer;
 
     @Value("${rocketmq.producer.group}")
@@ -44,5 +44,5 @@ public class RocketMQConfig {
         producer.setRetryTimesWhenSendFailed(this.retryTimesWhenSendFailed);
         producer.setRetryTimesWhenSendAsyncFailed(this.retryTimesWhenSendAsyncFailed);
         return producer;
-    }
+    }*/
 }
