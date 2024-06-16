@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   application:
-    name: springboot-sduty
+    name: springboot-study
 
 #数据源
   datasource:

@@ -29,6 +29,11 @@ public class RedisConfig {
         return new LettuceConnectionFactory(config);
     }
 
+    /**
+     *
+     * redisTemplate 和 stringRedisTemplate 设置相同的序列化方式实现数据相互访问
+     *
+     */
     @Bean
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
         RedisTemplate<String, Object> template = new RedisTemplate<>();
