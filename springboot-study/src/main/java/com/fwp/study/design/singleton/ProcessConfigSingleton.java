@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class ProcessConfigSingleton {
 
-    private static ProcessConfigSingleton processConfigSingleton;
+    private static volatile ProcessConfigSingleton processConfigSingleton;
 
     private Map<String, ProcessConfig> processConfigMap;
 
