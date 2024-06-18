@@ -1,5 +1,6 @@
 package com.fwp.study.design.singleton;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,6 +14,7 @@ public class ProcessConfigSingleton {
 
     private ProcessConfigSingleton() {
         //查询数据库获取流程配置信息
+        processConfigMap = new HashMap<String, ProcessConfig>();
         processConfigMap.put("processKey", new ProcessConfig());
     }
 
