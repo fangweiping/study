@@ -13,6 +13,8 @@
     <modules>
         <module>springboot-study</module>
         <module>springboot-zuul</module>
+        <module>springboot-user</module>
+        <module>springboot-common</module>
     </modules>
 
     <properties>

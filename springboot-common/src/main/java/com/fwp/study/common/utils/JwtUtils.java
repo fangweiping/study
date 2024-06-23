@@ -1,17 +1,13 @@
-package com.fwp.study.utils;
+package main.java.com.fwp.study.common.utils;
 
-import java.util.Map;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
-/**
- * Jwt工具类
- *
- * @author ruoyi
- */
-public class JwtUtils
-{
+import java.util.Map;
+
+public class JwtUtils {
+
     public static String secret = "123412";
 
     /**
@@ -20,8 +16,7 @@ public class JwtUtils
      * @param claims 数据声明
      * @return 令牌
      */
-    public static String createToken(Map<String, Object> claims)
-    {
+    public static String createToken(Map<String, Object> claims) {
         String token = Jwts.builder().setClaims(claims).signWith(SignatureAlgorithm.RS256, secret).compact();
         return token;
     }
@@ -32,12 +27,11 @@ public class JwtUtils
      * @param token 令牌
      * @return 数据声明
      */
-    public static Claims parseToken(String token)
-    {
+    public static Claims parseToken(String token) {
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
     }
 
-/*    *//**
+    /*    *//**
      * 根据令牌获取用户标识
      *
      * @param token 令牌

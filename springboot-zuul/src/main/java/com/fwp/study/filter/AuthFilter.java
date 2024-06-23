@@ -1,13 +1,12 @@
 package com.fwp.study.filter;
 
-import com.fwp.study.utils.JwtUtils;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
+import main.java.com.fwp.study.common.utils.JwtUtils;
 import org.apache.http.HttpStatus;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
-import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -44,7 +43,7 @@ public class AuthFilter extends ZuulFilter {
         RequestContext currentContext = RequestContext.getCurrentContext();
         HttpServletRequest request = currentContext.getRequest();
         String requestURI = request.getRequestURI();
-        if (requestURI.startsWith("/auth/login") || requestURI.startsWith("/auth/logout")) {
+        if (requestURI.startsWith("/auth/login") || requestURI.startsWith("/auth/logout") || requestURI.startsWith("/auth/register")) {
             return false;
         }
         return true;
@@ -54,7 +53,7 @@ public class AuthFilter extends ZuulFilter {
     public Object run() {
         RequestContext currentContext = RequestContext.getCurrentContext();
         HttpServletRequest request = currentContext.getRequest();
-        String accessToken = request.getHeader("access-token");
+        String accessToken = request.getHeader("authorization");
         String refreshToken = request.getHeader("refresh-token");
 
         if (accessToken == null || JwtUtils.parseToken(accessToken) == null) {

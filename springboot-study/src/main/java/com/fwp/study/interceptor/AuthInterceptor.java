@@ -16,7 +16,7 @@ public class AuthInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //1.获取token
-        String token = request.getHeader("Authorization");
+        String token = request.getHeader("authorization");
         //2.校验token
         String str = JwtUtils.parseToken(token);
         if (token == null || str == null) {
