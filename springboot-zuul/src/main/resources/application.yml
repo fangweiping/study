@@ -8,11 +8,10 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
-  zuul:
-    prefix: /api  #请求前缀
-    routes: #定义路由规则
-      springboot-study:
-        path: /springboot-study
-    sensitive-headers:      # 禁止使用的头信息 ,设置为null,否则set-cookie无效
-    add-host-header: true  # 携带请求本身的host头信息  设置domian,扩展cookie的作用域
+zuul:
+  prefix: /api  #请求前缀
+  routes: #定义路由规则
+    springboot-study: /study/**
+  sensitive-headers:      # 禁止使用的头信息 ,设置为null,否则set-cookie无效
+  add-host-header: true  # 携带请求本身的host头信息  设置domian,扩展cookie的作用域
 
