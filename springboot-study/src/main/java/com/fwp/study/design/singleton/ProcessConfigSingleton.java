@@ -10,7 +10,7 @@ public class ProcessConfigSingleton {
 
     private static volatile ProcessConfigSingleton processConfigSingleton;
 
-    private Map<String, ProcessConfig> processConfigMap;
+    private final Map<String, ProcessConfig> processConfigMap;
 
     private ProcessConfigSingleton() {
         //查询数据库获取流程配置信息
