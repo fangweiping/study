@@ -2,10 +2,13 @@ package com.fwp.study.utils;
 
 import com.ql.util.express.DefaultContext;
 import com.ql.util.express.ExpressRunner;
+import org.assertj.core.util.Lists;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * //通过name获取function的定义
@@ -49,11 +52,17 @@ import java.util.Objects;
  */
 public class QLEUtils {
     public static void main(String[] args) throws Exception {
-        Map<String, Object> context = new HashMap<>();
-        context.put("${weight}", 2);
-        String expression = "${weight}>reids";
-        boolean b = executeExpress(context, expression);
-        System.out.println("b = " + b);
+        ExpressRunner runner = new ExpressRunner();
+        DefaultContext<String, Object> context = new DefaultContext<>();
+        ArrayList<String> list = Lists.newArrayList("a", "b", "c");
+        context.put("list", list);
+        boolean c = list.stream().map(a -> a.toString()).collect(Collectors.toList()).contains("c");
+        System.out.println("c = " + c);
+        String express = "list.contains(\"g\")";
+        Object execute = runner.execute(express, context, null, true, false);
+        System.out.println("execute = " + execute);
+
+
     }
     public static boolean executeExpress(Map<String, Object> variables, String expression) throws Exception {
         ExpressRunner runner = new ExpressRunner();
